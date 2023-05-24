@@ -1,10 +1,11 @@
 const board = document.querySelector('.game_board');
 const template = document.querySelector('#game_cell');
 let count = 0;
-let referee = new Referee();
+let size = 10;
+let referee = new Referee(size);
 let moves = {};
 
-for (let index = 0; index < 100; index++) {
+for (let index = 0; index < size*size; index++) {
   const new_cell = template.content.firstElementChild.cloneNode(true);
   new_cell.dataset.id = index;
   board.append(new_cell);
@@ -17,7 +18,7 @@ function clickHandle () {
     return;
   }
 
-  if (id < 90 && !moves.hasOwnProperty(id + 10)) {
+  if (id < (size - 1) * size && !moves.hasOwnProperty(id + size)) {
     return ;
   }
 
@@ -25,7 +26,7 @@ function clickHandle () {
   moves[id] = symbol;
   this.textContent = symbol;
 
-  if (referee.checkWinner(moves, symbol, id)) {
+  if (referee.checkWinner(moves, id)) {
     console.log("Player " + symbol + ' has won the game!');
   }
 }
