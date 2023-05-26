@@ -37,6 +37,15 @@ class Referee
     return false;
   }
 
+  /**
+   * Pārbauda vai noteiktajā līnijā ir uzvaras gadījums.
+   * 
+   * @param {string} symbol 
+   * @param {integer} y - vertical coordinate of a cell
+   * @param {integer} x 
+   * @param {array} line 
+   * @returns 
+   */
   checkLine (symbol, y, x, line) {
     let match_count = 0;
     for (const vector of line) {
